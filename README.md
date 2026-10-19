@@ -19,10 +19,13 @@ The system utilizes a modern full-stack approach for maximum scalability and per
 *   **Evidence Panel:** Presenting the exact source records, dataset metadata, and computational method used for every finding.
 *   **AI Briefing:** Generating an easily digestible, plain-language summary of technical findings, clearly stating limitations and recommended human verification steps.
 
+
 ## 📁 Documentation
 - [Project Idea](./docs/project-idea.md): Details the problem statement and intended use cases.
 - [Architecture](./ARCHITECTURE.md): Defines the technical stack and data flow.
 - [Agent Workflow](./agents.md): Describes the role of autonomous agents in data preprocessing and analysis.
+- [Roadmap](./ROADMAP.md): Future enhancements and goals.
+
 
 
 ## 📘 Project Structure
