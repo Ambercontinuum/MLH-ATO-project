@@ -1,5 +1,6 @@
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import FileResponse
 import geopandas as gpd
 from shapely.geometry import Point
 import os
@@ -28,21 +29,32 @@ def load_geojson(filename):
 async def root():
     return {"message": "Raleigh CivicPulse API is running"}
 
+@app.get("/api/layers")
+async def get_layers():
+    """
+    Returns all available GeoJSON layers for frontend rendering.
+    """
+    layers = {}
+    datasets = {
+        "flood_zones": "flood_zones.geojson",
+        "bus_routes": "bus_routes.geojson"
+    }
+    
+    for layer_name, filename in datasets.items():
+        gdf = load_geojson(filename)
+        if gdf is not None:
+            # Convert GeoDataFrame to GeoJSON dict
+            layers[layer_name] = json.loads(gdf.to_json())
+            
+    return layers
+
 @app.get("/api/query")
 async def query_location(lat: float, lon: float, buffer_m: float = 100):
     """
     Query location for intersecting GIS data.
-    lat: Latitude
-    lon: Longitude
-    buffer_m: Search buffer in meters (default 100m)
     """
-    # Create a point for the query location
-    # Note: GeoPandas uses (lon, lat) for Point
     point = Point(lon, lat)
-    
-    # We use a simple distance check. For real meters, we'd need to project to a UTM CRS.
-    # For this skeleton, we'll use a rough degree approximation or a small buffer.
-    # 0.001 degrees is roughly 111 meters.
+    # Rough approximation: 0.001 deg ~ 111m
     buffer_deg = buffer_m / 111000.0
     search_area = point.buffer(buffer_deg)
     
@@ -59,15 +71,12 @@ async def query_location(lat: float, lon: float, buffer_m: float = 100):
     for layer_name, filename in datasets.items():
         gdf = load_geojson(filename)
         if gdf is not None:
-            # Find features that intersect the search area
             intersecting = gdf[gdf.intersects(search_area)]
             if not intersecting.empty:
-                # Convert GeoDataFrame to a list of dictionaries
-                features = intersecting.to_json()
                 results["findings"].append({
                     "layer": layer_name,
                     "count": len(intersecting),
-                    "data": json.loads(features)
+                    "data": json.loads(intersecting.to_json())
                 })
                 
     return results
