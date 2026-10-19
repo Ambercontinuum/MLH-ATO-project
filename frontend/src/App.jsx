@@ -3,7 +3,6 @@ import { MapContainer, TileLayer, Marker, Popup, useMapEvents, GeoJSON } from 'r
 import axios from 'axios';
 import 'leaflet/dist/leaflet.css';
 
-// Component to handle map click events
 function MapEvents({ onLocationClick }) {
   useMapEvents({
     click(e) {
@@ -18,14 +17,9 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [layers, setLayers] = useState({});
 
-  // Load available layers on mount
   useEffect(() => {
     const loadLayers = async () => {
       try {
-        // In a real app, we'd have an endpoint /api/layers
-        // For now, we'll fetch the GeoJSON files directly if they are served statically
-        // or just mock the structure for the overlay.
-        // For the skeleton, we'll assume the backend provides the GeoJSON.
         const response = await axios.get('http://localhost:8000/api/layers');
         setLayers(response.data);
       } catch (error) {
@@ -50,7 +44,7 @@ function App() {
   };
 
   return (
-    <div style={{ height: '100vh', width: '100vw', position: 'relative' }}>
+    <div style={{ height: '100vh', width: '100vw', position: 'relative', fontFamily: 'sans-serif' }}>
       <MapContainer 
         center={[35.7796, -78.6382]} 
         zoom={13} 
@@ -58,17 +52,16 @@ function App() {
       >
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          attribution='&copy; OpenStreetMap contributors'
         />
         <MapEvents onLocationClick={handleLocationClick} />
         
-        {/* Render GeoJSON layers */}
         {Object.entries(layers).map(([layerName, geoData]) => (
           <GeoJSON 
             key={layerName} 
             data={geoData} 
             style={{
-              color: layerName === 'bus_routes' ? 'blue' : 'red',
+              color: layerName === 'bus_routes' ? '#0052cc' : '#d32f2f',
               weight: 2,
               opacity: 0.6
             }} 
@@ -77,25 +70,39 @@ function App() {
 
         {locationData && (
           <Popup position={locationData.location} onClose={() => setLocationData(null)}>
-            <div style={{ minWidth: '200px' }}>
-              <strong style={{ fontSize: '1.1em' }}>Location Insights</strong><br />
-              <small>{locationData.location.lat.toFixed(4)}, {locationData.location.lon.toFixed(4)}</small>
-              <hr />
-              {loading ? (
-                <p>Loading insights...</p>
-              ) : (
-                <div>
-                  {locationData.findings.length > 0 ? (
-                    locationData.findings.map((finding, index) => (
-                      <div key={index} style={{ marginBottom: '10px', borderLeft: `4px solid ${finding.layer === 'bus_routes' ? 'blue' : 'red'}`, paddingLeft: '8px' }}>
-                        <strong>{finding.layer.replace('_', ' ')}:</strong> {finding.count} feature(s) found.
-                      </div>
-                    ))
-                  ) : (
-                    <p>No intersecting data found at this location.</p>
-                  )}
+            <div style={{ minWidth: '280px', maxHeight: '400px', overflowY: 'auto' }}>
+              <h3 style={{ margin: '0 0 8px 0', fontSize: '16px' }}>CivicPulse Insight</h3>
+              <p style={{ fontSize: '12px', color: '#666', margin: '0 0 12px 0' }}>
+                {locationData.location.lat.toFixed(4)}, {locationData.location.lon.toFixed(4)}
+              </p>
+              
+              <div style={{ 
+                background: '#f5f5f5', padding: '10px', borderRadius: '4px', 
+                borderLeft: '4px solid #333', marginBottom: '12px', fontSize: '13px', fontStyle: 'italic' 
+              }}>
+                {loading ? "Generating AI Brief..." : locationData.ai_brief}
+              </div>
+
+              <div style={{ fontSize: '13px' }}>
+                <strong>Evidence:</strong>
+                <div style={{ marginTop: '5px' }}>
+                  {locationData.findings.map((finding, index) => (
+                    <div key={index} style={{ 
+                      marginBottom: '6px', 
+                      padding: '4px', 
+                      background: finding.layer === 'bus_routes' ? '#eef4ff' : '#fff0f0',
+                      border: `1px solid ${finding.layer === 'bus_routes' ? '#0052cc' : '#d32f2f'}`,
+                      borderRadius: '3px'
+                    }}>
+                      <span style={{ fontWeight: 'bold' }}>{finding.layer.replace('_', ' ')}:</span> {finding.count} feature(s)
+                    </div>
+                  ))}
                 </div>
-              )}
+              </div>
+              
+              <div style={{ marginTop: '12px', fontSize: '11px', color: '#888' }}>
+                Source records IDs: {locationData.source_records.map(r => r.id).join(', ')}
+              </div>
             </div>
           </Popup>
         )}
@@ -104,10 +111,10 @@ function App() {
       {loading && (
         <div style={{ 
           position: 'absolute', top: 20, right: 20, zIndex: 1000, 
-          background: 'white', padding: '10px', borderRadius: '5px', boxShadow: '0 2px 5px rgba(0,0,0,0.2)',
-          fontFamily: 'sans-serif'
+          background: 'white', padding: '10px 20px', borderRadius: '20px', 
+          boxShadow: '0 2px 10px rgba(0,0,0,0.1)', fontWeight: 'bold'
         }}>
-          Querying Backend...
+          Analyzing intersections...
         </div>
       )}
     </div>
