@@ -1,57 +1,59 @@
-import requests
-import json
-import os
-import pandas as pd
-import geopandas as gpd
-from shapely.geometry import shape
+"""Fetch the two public GeoJSON layers used for the Raleigh demo area."""
 
-# Configuration
-DATA_DIR = "backend/data"
-DATASETS = {
-    "flood_zones": "https://services1.arcgis.com/aT1T0pU1ZdpuDk1t/ArcGIS/rest/services/Flood_Prone_Areas_WFL1/FeatureServer/0/query?where=1%3D1&outFields=*&f=geojson",
-    "bus_routes": "https://data-wake.opendata.arcgis.com/datasets/ral::goraleigh-bus-routes/api" # This is an API portal link, may need specific query
+from functools import lru_cache
+
+import requests
+
+STOP_SERVICE = (
+    "https://services.arcgis.com/v400IkDOw1ad7Yad/arcgis/rest/services/"
+    "GoRaleigh_BusStops/FeatureServer/0/query"
+)
+FLOOD_SERVICE = (
+    "https://services5.arcgis.com/7weheFjxuNkGGiZi/arcgis/rest/services/"
+    "USA_Flood_Hazard_Areas_view/FeatureServer/0/query"
+)
+STOP_SOURCE = "https://data-ral.opendata.arcgis.com/datasets/goraleigh-bus-stops-1/explore"
+FLOOD_SOURCE = "https://www.arcgis.com/home/item.html?id=ccd29fb4bd5e4b44a2d61638829a5d7e"
+
+# Compact area around the verified stop 8099. Expand only after checking service limits.
+DEMO_BBOX = "-78.65,35.80,-78.60,35.83"
+COMMON_PARAMS = {
+    "geometry": DEMO_BBOX,
+    "geometryType": "esriGeometryEnvelope",
+    "inSR": 4326,
+    "spatialRel": "esriSpatialRelIntersects",
+    "outSR": 4326,
+    "f": "geojson",
 }
 
-def fetch_geojson(url):
-    print(f"Fetching data from {url}...")
-    try:
-        response = requests.get(url, timeout=30)
-        response.raise_for_status()
-        return response.json()
-    except Exception as e:
-        print(f"Error fetching {url}: {e}")
-        return None
 
-def normalize_dataset(name, data):
-    if not data:
-        return None
-    
-    print(f"Normalizing {name}...")
-    # Load into GeoPandas for normalization
-    gdf = gpd.GeoDataFrame.from_features(data['features'])
-    
-    # Ensure we are using WGS84 (EPSG:4326) for the frontend
-    if gdf.crs is None:
-        gdf.set_crs(epsg=4326, inplace=True)
-    else:
-        gdf = gdf.to_crs(epsg=4326)
-    
-    # Save as GeoJSON locally
-    output_path = os.path.join(DATA_DIR, f"{name}.geojson")
-    gdf.to_file(output_path, driver='GeoJSON')
-    print(f"Saved normalized {name} to {output_path}")
-    return output_path
+def fetch_layer(service, *, where, fields):
+    params = {**COMMON_PARAMS, "where": where, "outFields": fields}
+    response = requests.get(service, params=params, timeout=30)
+    response.raise_for_status()
+    data = response.json()
+    if data.get("type") != "FeatureCollection" or not isinstance(data.get("features"), list):
+        raise ValueError(f"Expected GeoJSON FeatureCollection from {service}")
+    if not data["features"]:
+        raise ValueError(f"Source returned no features: {response.url}")
+    return data, response.url
 
-def main():
-    os.makedirs(DATA_DIR, exist_ok=True)
-    
-    for name, url in DATASETS.items():
-        # Special handling for the ArcGIS FeatureServer query
-        data = fetch_geojson(url)
-        if data:
-            normalize_dataset(name, data)
-        else:
-            print(f"Failed to ingest {name}")
 
-if __name__ == "__main__":
-    main()
+@lru_cache(maxsize=1)
+def load_demo_layers():
+    """Cache source data per process; never substitute the synthetic repo fixtures."""
+    stops, stop_query = fetch_layer(
+        STOP_SERVICE,
+        where="1=1",
+        fields="Stop_ID,Stop_Name,R2,ADA_Compliant,Status,EditDate",
+    )
+    flood, flood_query = fetch_layer(
+        FLOOD_SERVICE,
+        where="SFHA_TF='T'",
+        fields="OBJECTID,FLD_AR_ID,FLD_ZONE,SFHA_TF,SOURCE_CIT",
+    )
+    return {
+        "bus_stops": stops,
+        "flood_zones": flood,
+        "source_queries": {"bus_stops": stop_query, "flood_zones": flood_query},
+    }
