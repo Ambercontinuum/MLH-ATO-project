@@ -17,7 +17,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-DATA_DIR = "backend/data"
+DATA_DIR = "data"
 # Configuration for DigitalOcean Serverless Inference
 GEMMA_API_URL = os.getenv("GEMMA_API_URL", "https://api.digitalocean.com/v1/inference/gemma4")
 GEMMA_API_KEY = os.getenv("GEMMA_API_KEY", "placeholder_key")

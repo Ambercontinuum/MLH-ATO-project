@@ -1,4 +1,3 @@
-version: '3.8'
 services:
   # Backend API service. Uses uvicorn to serve the FastAPI application.
   backend:
@@ -10,8 +9,6 @@ services:
     volumes:
       - ./backend/app:/app
       - ./backend/requirements.txt:/app/requirements.txt
-    depends_on:
-      - frontend # Ensure backend starts after base networking is up
     environment:
       # Set environment variables if needed for GIS keys, LLM endpoints, etc.
       - OPENAI_API_KEY=${OPENAI_API_KEY}

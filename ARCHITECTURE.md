@@ -21,7 +21,7 @@
 
 ## Deployment & AI
 *   **Cloud:** DigitalOcean.
-*   **Containerization:** Docker/Docker Compose for local development and deployment.
+*   **Containerization:** Docker/Docker Compose for local development. Deployment uses a container-image based approach via the DigitalOcean Container Registry (DOCR) to bypass GitHub permission bottlenecks.
 *   **AI Integration:** Gemma 4 will be used via a DigitalOcean Serverless Inference endpoint. This ensures that LLM calls are separated from the core FastAPI logic, maintaining reliability and cost-efficiency.
 
 ***

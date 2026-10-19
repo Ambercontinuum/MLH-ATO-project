@@ -20,7 +20,7 @@ function App() {
   useEffect(() => {
     const loadLayers = async () => {
       try {
-        const response = await axios.get('http://localhost:8000/api/layers');
+        const response = await axios.get('/api/layers');
         setLayers(response.data);
       } catch (error) {
         console.error("Error loading layers:", error);
@@ -31,11 +31,11 @@ function App() {
 
   const handleLocationClick = async (latlng) => {
     setLoading(true);
-    try {
-      const { lat, lng } = latlng;
-      const response = await axios.get(`http://localhost:8000/api/query?lat=${lat}&lon=${lng}`);
-      setLocationData(response.data);
-    } catch (error) {
+      try {
+        const { lat, lng } = latlng;
+        const response = await axios.get(`/api/query?lat=${lat}&lon=${lng}`);
+        setLocationData(response.data);
+      } catch (error) {
       console.error("Error fetching location data:", error);
       alert("Failed to fetch data from the backend API.");
     } finally {
