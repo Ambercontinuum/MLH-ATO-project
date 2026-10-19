@@ -1,0 +1,71 @@
+OBJECTID,full_name,dir_id,dir_name,pattern,line_name,map_name,GlobalID,Frequency
+461,5 Biltmore Hills - outbound, 1265834566,  outbound,   A,     5 Biltmore Hills,        Copy of January 2025 - Reviewed,aee620b9-3538-4e2c-bb78-b14c6aeaf2c6,15
+462,5 Biltmore Hills - inbound, 1265834567,  inbound,   A,     5 Biltmore Hills,        Copy of January 2025 - Reviewed,20fcafd3-4c62-4cf2-9f8a-4a5a90ae9628,15
+467,21 Caraleigh - outbound, 1265834610,  outbound,   A,     21 Caraleigh,        Copy of January 2025 - Reviewed,5f4ba373-16eb-4008-a5a1-f78e06ea4f52,15
+468,21 Caraleigh - inbound, 1265834611,  inbound,   A,     21 Caraleigh,        Copy of January 2025 - Reviewed,92c973d2-05b6-44a9-b783-9162e00849e3,15
+469,25L Triangle Town Link - A - Northbound, 1265834606,  Northbound,   A,     25L Triangle Town Link,        Copy of January 2025 - Reviewed,ea56ffdd-5a3d-4bf6-b5a6-964b9e100b07,60
+470,25L Triangle Town Link - A - Southbound, 1265834603,  Southbound,   A,     25L Triangle Town Link,        Copy of January 2025 - Reviewed,4b70551c-cea4-4c22-a4f0-f103dbd1553b,60
+471,16 Oberlin - outbound, 1265834592,  outbound,   A,     16 Oberlin,        Copy of January 2025 - Reviewed,bf2e563b-b22d-4677-9704-51994e70ae6a,30
+472,16 Oberlin - inbound, 1265834593,  inbound,   A,     16 Oberlin,        Copy of January 2025 - Reviewed,c796288e-6187-4be0-8135-078cf03d4914,30
+479,8 Six Forks - A - outbound, 1265834572,  outbound,   A,     8 Six Forks,        Copy of January 2025 - Reviewed,f9985fc0-cf94-4aa0-8b01-8c423272dde8,30
+480,8 Six Forks - A - inbound, 1265834574,  inbound,   A,     8 Six Forks,        Copy of January 2025 - Reviewed,91a4891f-a3c8-4477-b7df-7932269a2e15,30
+485,11 Avent Ferry - outbound, 1265834590,  outbound,   A,     11 Avent Ferry,        Copy of January 2025 - Reviewed,7201a253-60b1-4d31-9d4e-41f9f2301346,15
+486,11 Avent Ferry - inbound, 1265834591,  inbound,   A,     11 Avent Ferry,        Copy of January 2025 - Reviewed,ac037b36-10d8-4616-82f1-e5b39e1db69b,15
+493,24L North Crosstown Connector - A - Eastbound, 1265834624,  Eastbound,   A,     24L North Crosstown Connector,        Copy of January 2025 - Reviewed,032eb396-44f3-4dc3-8f69-9b13aeaf5784,30
+494,24L North Crosstown Connector - A - Westbound, 1265834623,  Westbound,   A,     24L North Crosstown Connector,        Copy of January 2025 - Reviewed,e2895264-36da-48e7-8f73-42e99336334c,30
+497,33L Knightdale - A - EASTBOUND, 1265834659,  EASTBOUND,   A,     33L Knightdale,        Copy of January 2025 - Reviewed,f4ea5fc2-048c-4168-9d29-805a21027c07,45
+498,33L Knightdale - A - WESTBOUND, 1265834658,  WESTBOUND,   A,     33L Knightdale,        Copy of January 2025 - Reviewed,5c71a1f8-6770-46c1-9cbc-15bcb59ca3cf,45
+499,10 Longview - outbound, 1265834584,  outbound,   A,     10 Longview,        Copy of January 2025 - Reviewed,d72d11ec-83b1-4404-adb8-c5e305d7bc0b,30
+500,10 Longview - inbound, 1265834585,  inbound,   A,     10 Longview,        Copy of January 2025 - Reviewed,61409d97-353d-4ad9-8740-3e526e7eda80,30
+503,17 Rock Quarry - outbound, 1265834600,  outbound,   A,     17 Rock Quarry,        Copy of January 2025 - Reviewed,331a4e70-8c21-4140-80c4-e4bab8517298,60
+504,17 Rock Quarry - inbound, 1265834601,  inbound,   A,     17 Rock Quarry,        Copy of January 2025 - Reviewed,33154b98-f7d4-4831-93c2-fb14dcc7dd6d,60
+509,23L Millbrook Connector - Eastbound, 1265834615,  Eastbound,   A,     23L Millbrook Connector,        Copy of January 2025 - Reviewed,d172b318-7c6d-4ab4-9759-bf82a69d2620,30
+510,23L Millbrook Connector - Westbound, 1265834614,  Westbound,   A,     23L Millbrook Connector,        Copy of January 2025 - Reviewed,1b4d35d3-bd1c-43b9-9368-43a8b5e42936,30
+511,15 WakeMed - A - outbound, 1265834596,  outbound,   A,     15 WakeMed,        Copy of January 2025 - Reviewed,439445c9-0aed-4558-a304-f10cee5daaf6,15
+512,15 WakeMed - A - inbound, 1265834599,  inbound,   A,     15 WakeMed,        Copy of January 2025 - Reviewed,bd1f9716-f323-4472-adcc-85ef4e220a6c,15
+519,55X Poole Road Express - outbound, 1265834632,  outbound,   A,     55X Poole Road Express,        Copy of January 2025 - Reviewed,1083e7e2-eb17-451d-9482-ff66c9154cb3,60
+520,55X Poole Road Express - inbound, 1265834633,  inbound,   A,     55X Poole Road Express,        Copy of January 2025 - Reviewed,ccda56d7-2516-47a5-8823-cdd120e1fb20,60
+523,36L Creedmoor - Northbound, 1265834631,  Northbound,   A,     36L Creedmoor,        Copy of January 2025 - Reviewed,2e7dcf5c-ab26-44ba-b9fe-40e414eeeae5,30
+524,36L Creedmoor - Southbound, 1265834630,  Southbound,   A,     36L Creedmoor,        Copy of January 2025 - Reviewed,a6aeac71-a605-4cbe-96f5-d4947f575a98,30
+525,40X Wake Tech Express - outbound, 1265834634,  outbound,   A,     40X Wake Tech Express,        Copy of January 2025 - Reviewed,12afd856-bca4-43cf-9ff4-9ff3c82675b5,
+526,40X Wake Tech Express - inbound, 1265834635,  inbound,   A,     40X Wake Tech Express,        Copy of January 2025 - Reviewed,d0364213-107e-4a70-b008-164bec671449,
+531,6 Glenwood - A - outbound, 1265834568,  outbound,   A,     6 Glenwood,        Copy of January 2025 - Reviewed,7de4a6af-c964-4575-b51a-669b6e64e129,15
+532,6 Glenwood - A - inbound, 1265834570,  inbound,   A,     6 Glenwood,        Copy of January 2025 - Reviewed,09c5c522-1ae0-4a2e-a734-4c3e6d3b86be,15
+533,1 Capital Blvd - A - outbound, 1265834555,  outbound,   A,     1 Capital Blvd,        Copy of January 2025 - Reviewed,79092fee-d847-4106-8f29-dc2eef925ed9,10
+534,1 Capital Blvd - A - inbound, 1265834556,  inbound,   A,     1 Capital Blvd,        Copy of January 2025 - Reviewed,7e6c7945-5d53-4124-8717-83c952c4fc6a,10
+537,70L Brier Creek - outbound, 1265834636,  outbound,   A,     70L Brier Creek,        Copy of January 2025 - Reviewed,bf1a48f3-7fdb-48c2-a8f4-50b00d1e1230,60
+538,70L Brier Creek - inbound, 1265834637,  inbound,   A,     70L Brier Creek,        Copy of January 2025 - Reviewed,6b1da96a-05ec-409c-a7b8-14412ba59499,60
+543,7 S Saunders - A - outbound, 1265834654,  outbound,   A,     7 S Saunders,        Copy of January 2025 - Reviewed,88eba957-f460-4525-8168-cc72fec76487,15
+544,7 S Saunders - A - inbound, 1265834657,  inbound,   A,     7 S Saunders,        Copy of January 2025 - Reviewed,87d075f7-d3c6-42f6-a317-62d3af240d37,15
+549,20A Garner - outbound, 1265834618,  outbound,   A,     20A Garner,        Copy of January 2025 - Reviewed,f4ed022f-6156-42d3-a651-cbea2119ceb6,60
+550,20A Garner - inbound, 1265834619,  inbound,   A,     20A Garner,        Copy of January 2025 - Reviewed,f797e37a-5b11-453c-a180-1e9658048005,60
+551,20B Garner - inbound, 1265834617,  inbound,   A,     20B Garner,        Copy of January 2025 - Reviewed,ddb1beb6-cce7-408a-9308-f0e6626442a4,60
+552,20B Garner - outbound, 1265834616,  outbound,   A,     20B Garner,        Copy of January 2025 - Reviewed,fb64667e-002d-449b-880f-58ab9b615e54,60
+555,9 Hillsborough - inbound, 1265834563,  inbound,   A,     9 Hillsborough,        Copy of January 2025 - Reviewed,5bde030a-f546-478c-90e6-6f995a8377bf,15
+556,9 Hillsborough - outbound, 1265834562,  outbound,   A,     9 Hillsborough,        Copy of January 2025 - Reviewed,04350d3a-31f0-4b0c-8faa-7c0da8b7c28a,15
+566,18 Poole Rd - inbound, 1278792634,  inbound,   A,     18 Poole Rd,        June Download Routes,af0919f5-3fb9-4347-92eb-e6744e7aa07d,30
+567,18 Poole Rd - outbound, 1278792632,  outbound,   A,     18 Poole Rd,        June Download Routes,1d0c0aaa-89d1-4620-b15c-a0bb7199ce05,30
+579,12 Method - outbound, 1278792684,  outbound,   A,     12 Method,        June Download Routes,c44d6f13-02aa-461b-9071-0ba5b19759ea,30
+580,12 Method - inbound, 1278792685,  inbound,   A,     12 Method,        June Download Routes,a64b89e8-860e-4e43-87a7-054729f49c8e,30
+585,3 Glascock - outbound, 1278792683,  outbound,   A,     3 Glascock,        June Download Routes,717eff4f-5c8f-44f0-9047-1949975a7ee3,30
+586,3 Glascock - inbound, 1278792682,  inbound,   A,     3 Glascock,        June Download Routes,45e97fb6-dd8b-436b-b118-fe42d0ed2038,30
+587,18L Barwell New Hope - A - Northbound, 1278792689,  Northbound,   A,     18L Barwell New Hope,        June Download Routes,95c9c803-cead-4975-bf80-5973870d58cd,60
+588,18L Barwell New Hope - A - Southbound, 1278792688,  Southbound,   A,     18L Barwell New Hope,        June Download Routes,0fb7035c-269b-47e1-96e6-e5bada823235,60
+589,18L Barwell New Hope - B - Northbound, 1278792691,  Northbound,   B,     18L Barwell New Hope,        June Download Routes,86903e08-4832-42f3-bee5-e0b1a68b0b26,60
+590,18L Barwell New Hope - B - Southbound, 1278792690,  Southbound,   B,     18L Barwell New Hope,        June Download Routes,eb565d86-7da1-45cb-8a6c-d5afc8908e54,60
+595,11L Buck Jones - outbound, 1278792616,  outbound,   A,     11L Buck Jones,        June Download Routes,1eb78930-9bb5-457e-a207-7290ba10bc8f,45
+596,11L Buck Jones - inbound, 1278792617,  inbound,   A,     11L Buck Jones,        June Download Routes,90fcecd6-037e-43f1-bdce-7a050d8018a1,45
+597,27L Blue Ridge - Southbound, 1278792659,  Southbound,   A,     27L Blue Ridge,        June Download Routes,837133e8-983f-4283-94a7-4ef95561837f,30
+598,27L Blue Ridge - Northbound, 1278792661,  Northbound,   A,     27L Blue Ridge,        June Download Routes,2bed5839-dee8-4312-9bf5-b8b98b95d251,30
+613,2 Falls of Neuse - A - outbound, 1278792614,  outbound,   A,     2 Falls of Neuse,        June Download Routes,3d93376f-4f87-4b0f-a932-d184528d3a1c,15
+614,2 Falls of Neuse - A - Inbound, 1278792606,  Inbound,   A,     2 Falls of Neuse,        June Download Routes,7eb4901e-20b0-4bed-87e0-789f0d5467ec,15
+627,7L Carolina Pines - A - Eastbound, 1278792608,  Eastbound,   A,     7L Carolina Pines,        June Download Routes,829b28a4-9c62-45f8-8272-0e8d90e59fbf,30
+628,7L Carolina Pines - A - Westbound, 1278792603,  Westbound,   A,     7L Carolina Pines,        June Download Routes,d6525d1c-e124-4c2e-b8f7-3c3425f89375,30
+635,15L Trawick Connector - A - Northbound, 1278792627,  Northbound,   A,     15L Trawick Connector,        June Download Routes,bf3b39ad-a64e-414c-bcbf-591bd00ca941,45
+636,15L Trawick Connector - A - Southbound, 1278792622,  Southbound,   A,     15L Trawick Connector,        June Download Routes,2a141736-e5d2-4b2c-ae4e-d526b3f41b79,45
+638,4 Rex Hospital - outbound, 1278792612,  outbound,   A,     4 Rex Hospital,        June Download Routes,8122408d-8a7d-4050-a134-e78cfd4724c7,30
+639,4 Rex Hospital - Inbound, 1278792601,  Inbound,   A,     4 Rex Hospital,        June Download Routes,bfa86304-ed12-490a-95b9-5a87fc609572,30
+648,19 MLK/Sunnybrook - outbound, 1278792686,  outbound,   A,     19 MLK/Sunnybrook,        June Download Routes,b5520f63-22a4-4014-b96c-8762c75c1bec,15
+649,19 MLK/Sunnybrook - inbound, 1278792687,  inbound,   A,     19 MLK/Sunnybrook,        June Download Routes,37971c96-1c91-4017-b53e-bb7419a8a4be,15
+654,14 Atlantic - outbound,,Outbound,A,14 Atlantic,,aaeee1a4-a1f5-4a19-9e30-6b3d103fed9c,30
+655,14 Atlantic - inbound,,,A,14 Atlantic,,0a7293d7-6749-4689-b100-14ca7078735b,30
