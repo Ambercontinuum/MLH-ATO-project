@@ -24,5 +24,15 @@ The system utilizes a modern full-stack approach for maximum scalability and per
 - [Architecture](./ARCHITECTURE.md): Defines the technical stack and data flow.
 - [Agent Workflow](./agents.md): Describes the role of autonomous agents in data preprocessing and analysis.
 
+
+## 📘 Project Structure
+This project is organized as a monorepo. The primary components are housed in:
+*   `frontend/`: The React web application responsible for the map interface and UI.
+*   `backend/`: The FastAPI service handling API requests, GIS processing, and AI calls.
+*   `docker-compose.yml`: Defines the services and networking for running the entire stack locally.
+
 ## 🚀 Getting Started
-*(Instructions for setup and running the local demo will be added here)*
+1. Build and run the entire stack using Docker Compose:
+   \`docker-compose up --build\`
+2. Navigate to the respective directories to work on the code.
+3. All development and testing should be conducted within Docker containers for environment consistency.
