@@ -1,0 +1,33 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": { "id": "flood-001", "name": "Example Flood Zone A", "risk_level": "High" },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [-78.64, 35.77],
+          [-78.63, 35.77],
+          [-78.63, 35.78],
+          [-78.64, 35.78],
+          [-78.64, 35.77]
+        ]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": "flood-002", "name": "Example Flood Zone B", "risk_level": "Medium" },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [-78.62, 35.76],
+          [-78.61, 35.76],
+          [-78.61, 35.77],
+          [-78.62, 35.77],
+          [-78.62, 35.76]
+        ]]
+      }
+    }
+  ]
+}

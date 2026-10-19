@@ -1,0 +1,31 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": { "id": "route-001", "route_name": "Route 10", "operator": "GoRaleigh" },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-78.65, 35.77],
+          [-78.64, 35.77],
+          [-78.63, 35.77],
+          [-78.62, 35.77]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": "route-002", "route_name": "Route 20", "operator": "GoRaleigh" },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-78.63, 35.79],
+          [-78.63, 35.78],
+          [-78.63, 35.77],
+          [-78.63, 35.76]
+        ]
+      }
+    }
+  ]
+}
