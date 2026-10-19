@@ -1,12 +1,19 @@
 """Raleigh CivicPulse API: deterministic stop–flood-hazard screening."""
 
+import json
 import math
+import os
+
+import requests
 
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from shapely.geometry import Point, shape
 
 from app.ingest import FLOOD_SOURCE, STOP_SOURCE, load_demo_layers
+
+GEMMA_URL = "https://inference.do-ai.run/v1/chat/completions"
+GEMMA_MODEL = "gemma-4-31B-it"
 
 app = FastAPI(title="Raleigh CivicPulse API")
 app.add_middleware(
@@ -129,6 +136,49 @@ def current_layers():
         ) from exc
 
 
+def generate_gemma_brief(result):
+    """Interpret a verified join; the model never computes the spatial result."""
+    if not result["findings"]:
+        return result["ai_brief"]
+    key = os.getenv("GEMMA_API_KEY")
+    if not key:
+        return "Gemma unavailable: set the server's GEMMA_API_KEY model access key."
+
+    evidence = {
+        "findings": result["findings"],
+        "source_records": result["source_records"],
+        "limitations": result["limitations"],
+    }
+    try:
+        response = requests.post(
+            GEMMA_URL,
+            headers={"Authorization": f"Bearer {key}", "Content-Type": "application/json"},
+            json={
+                "model": GEMMA_MODEL,
+                "messages": [
+                    {"role": "system", "content": (
+                        "Draft a concise Transit–Stormwater inspection handoff using only "
+                        "the supplied evidence. Cite stop and flood-area IDs. Distinguish "
+                        "mapped hazard from observed flooding. Do not invent service impact "
+                        "or current field conditions. State what staff should verify on site. "
+                        "Keep the brief under 130 words."
+                    )},
+                    {"role": "user", "content": json.dumps(evidence)},
+                ],
+                "temperature": 0.1,
+                "max_completion_tokens": 250,
+            },
+            timeout=25,
+        )
+        response.raise_for_status()
+        brief = response.json()["choices"][0]["message"]["content"]
+        if not isinstance(brief, str) or not brief.strip():
+            raise ValueError("empty model response")
+        return brief.strip()
+    except (requests.RequestException, KeyError, IndexError, ValueError):
+        return "Gemma unavailable: inference request failed; spatial evidence remains valid."
+
+
 @app.get("/")
 async def root():
     return {"message": "Raleigh CivicPulse API is running"}
@@ -149,4 +199,7 @@ async def query_location(lat: float, lon: float, buffer_m: float = 100):
         raise HTTPException(status_code=400, detail="Coordinates and buffer must be finite")
     if not (-90 <= lat <= 90 and -180 <= lon <= 180 and 1 <= buffer_m <= 500):
         raise HTTPException(status_code=400, detail="Invalid coordinates or buffer")
-    return find_stop_flood_overlaps(lat, lon, buffer_m, current_layers())
+    result = find_stop_flood_overlaps(lat, lon, buffer_m, current_layers())
+    result["ai_brief"] = generate_gemma_brief(result)
+    result["ai_model"] = GEMMA_MODEL if result["findings"] else None
+    return result
