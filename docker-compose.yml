@@ -3,6 +3,8 @@ services:
     build: ./backend
     ports:
       - "8000:80"
+    environment:
+      GEMMA_API_KEY: ${GEMMA_API_KEY:-}
 
   frontend:
     build: ./frontend
