@@ -44,3 +44,7 @@ This section defines the roles of specialized agents within the CivicPulse syste
 1.  Start by implementing the **Data Ingestion Agent** using Python/GeoPandas (fastest win).
 2.  Next, implement the basic **Geospatial Analysis** (intersection/buffer) using FastAPI endpoints referencing the structured data.
 3.  Finally, integrate the **Interpretation Agent** layer, feeding the JSON output to the Gemma 4 API.
+
+**Hackathon Velocity Rules:**
+*   **Continuous Integration:** Commit and push all work automatically upon completion of a task or sub-task to prevent data loss and maintain a clear audit trail.
+*   **Rapid Deployment:** Automate (re)deployment to DigitalOcean immediately following successful commits to ensure the demo site is always current.
