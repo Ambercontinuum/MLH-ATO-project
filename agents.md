@@ -1,5 +1,12 @@
 # Autonomous Agents Workflow
 
+## Project Context
+For a comprehensive understanding of the system, refer to the following documentation:
+- [Project Idea](./docs/project-idea.md): Problem statement and core concept.
+- [Architecture](./ARCHITECTURE.md): Technical stack and data flow.
+- [Roadmap](./ROADMAP.md): Current development status and priority tasks.
+- [README](./README.md): General project overview and setup.
+
 This section defines the roles of specialized agents within the CivicPulse system, primarily responsible for handling complex, non-real-time, or computationally intensive backend tasks that precede the core UI interaction.
 
 ## Agent Roles & Responsibilities
