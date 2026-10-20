@@ -39,3 +39,7 @@ This project is organized as a monorepo. The primary components are housed in:
    \`docker-compose up --build\`
 2. Navigate to the respective directories to work on the code.
 3. All development and testing should be conducted within Docker containers for environment consistency.
+
+### ☁️ Deployment
+To deploy the latest changes to the DigitalOcean App Platform, ensure `doctl` is installed and authenticated, then run:
+\`./deploy.sh\`

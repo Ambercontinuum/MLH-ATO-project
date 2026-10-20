@@ -76,7 +76,7 @@ async def generate_ai_brief(structured_findings):
 async def root():
     return {"message": "Raleigh CivicPulse API is running"}
 
-@app.get("/api/layers")
+@app.get("/layers")
 async def get_layers():
     layers = {}
     datasets = {
@@ -89,7 +89,7 @@ async def get_layers():
             layers[layer_name] = json.loads(gdf.to_json())
     return layers
 
-@app.get("/api/query")
+@app.get("/query")
 async def query_location(lat: float, lon: float, buffer_m: float = 100):
     point = Point(lon, lat)
     buffer_deg = buffer_m / 111000.0
@@ -117,13 +117,18 @@ async def query_location(lat: float, lon: float, buffer_m: float = 100):
             if not intersecting.empty:
                 results["layers"].append(layer_name)
                 results["observations"].append(f"Found {len(intersecting)} features in {layer_name} within {buffer_m}m.")
-                for idx, row in intersecting.iterrows():
-                    rec_id = row.get('id', f"{layer_name}-{idx}")
-                    results["source_records"].append({
-                        "id": rec_id,
-                        "layer": layer_name,
-                        "properties": row.to_dict()
-                    })
+                    for idx, row in intersecting.iterrows():
+                        rec_id = row.get('id', f"{layer_name}-{idx}")
+                        # Convert geometry to WKT or JSON to avoid serialization errors
+                        props = row.to_dict()
+                        if 'geometry' in props:
+                            props['geometry'] = props['geometry'].wkt if hasattr(props['geometry'], 'wkt') else str(props['geometry'])
+                        
+                        results["source_records"].append({
+                            "id": rec_id,
+                            "layer": layer_name,
+                            "properties": props
+                        })
                 results["findings"].append({
                     "layer": layer_name,
                     "count": len(intersecting),

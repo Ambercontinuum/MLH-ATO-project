@@ -46,6 +46,7 @@ This section defines the roles of specialized agents within the CivicPulse syste
 3.  Finally, integrate the **Interpretation Agent** layer, feeding the JSON output to the Gemma 4 API.
 
 **Hackathon Velocity Rules:**
+*   **Tooling:** Assume the local development environment has `doctl` installed and authenticated for orchestrating DigitalOcean resources, triggering deployments, and pulling container logs.
 *   **Continuous Integration:** Commit and push all work automatically upon completion of a task or sub-task to prevent data loss and maintain a clear audit trail.
 *   **Rapid Deployment:** Automate (re)deployment to DigitalOcean immediately following successful commits to ensure the demo site is always current.
 *   **Roadmap Maintenance:** Proactively update `ROADMAP.md` as features are implemented to ensure a real-time source of truth for project progress.
