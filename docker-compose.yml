@@ -1,32 +1,14 @@
 services:
-  # Backend API service. Uses uvicorn to serve the FastAPI application.
   backend:
-    build:
-      context: ./backend
-      dockerfile: Dockerfile
+    build: ./backend
     ports:
       - "8000:80"
-    volumes:
-      - ./backend/app:/app
-      - ./backend/requirements.txt:/app/requirements.txt
     environment:
-      # Set environment variables if needed for GIS keys, LLM endpoints, etc.
-      - OPENAI_API_KEY=${OPENAI_API_KEY}
-      - GEMMA_API_URL=${GEMMA_API_URL}
+      GEMMA_API_KEY: ${GEMMA_API_KEY:-}
 
-  # Frontend web client. Served as static files.
   frontend:
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile
+    build: ./frontend
     ports:
-      - "3000:3000"
-    volumes:
-      - ./frontend/src:/app/src
-      - ./frontend/public:/app/public
+      - "3000:80"
     depends_on:
-      - backend # Frontend might need to know the backend URL
-
-# Define volumes for persistence (if required) or for shared network services
-volumes:
-  build_cache:
+      - backend

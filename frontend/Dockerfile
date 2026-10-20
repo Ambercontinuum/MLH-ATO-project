@@ -1,15 +1,13 @@
-# Dockerfile
-# Stage 1: Build React app
-FROM node:20-alpine as build
+FROM node:20-alpine AS build
 WORKDIR /app
-COPY package.json .
+COPY package.json ./
 RUN npm install
+COPY index.html ./
 COPY src ./src
 COPY public ./public
 COPY index.html .
 RUN npm run build
 
-# Stage 2: Serve static files (e.g., using Nginx or simple static server)
 FROM nginx:alpine
 COPY --from=build /app/dist /usr/share/nginx/html
 EXPOSE 80

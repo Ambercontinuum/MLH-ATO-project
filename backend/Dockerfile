@@ -1,4 +1,3 @@
-## Docker setup for the backend
 FROM python:3.11-slim
 WORKDIR /app
 COPY requirements.txt .

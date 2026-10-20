@@ -35,6 +35,10 @@ This project is organized as a monorepo. The primary components are housed in:
 *   `docker-compose.yml`: Defines the services and networking for running the entire stack locally.
 
 ## 🚀 Getting Started
+
+For a live AI brief, set `GEMMA_API_KEY` to a DigitalOcean Inference **model access key** in the shell running Docker Compose. Keep the key out of Git. Then run `docker compose up --build` and open `http://localhost:3000`. Clicking near stop 8099 requests a brief only after the deterministic stop–hazard join succeeds. If the key or inference service is unavailable, the UI says so rather than displaying a mock answer.
+
+The backend calls DigitalOcean Chat Completions with `gemma-4-31B-it`. See [DigitalOcean's model documentation](https://docs.digitalocean.com/products/inference/details/models/) and [Google's Gemma 4 model information](https://ai.google.dev/gemma/docs/core). The app is MIT licensed; the model has its own [Apache 2.0 terms](https://www.apache.org/licenses/LICENSE-2.0).
 1. Build and run the entire stack using Docker Compose:
    \`docker-compose up --build\`
 2. Navigate to the respective directories to work on the code.

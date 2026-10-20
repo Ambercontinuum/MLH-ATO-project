@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { MapContainer, TileLayer, Marker, Popup, useMapEvents, GeoJSON } from 'react-leaflet';
+import { MapContainer, TileLayer, Popup, useMapEvents, GeoJSON } from 'react-leaflet';
+import L from 'leaflet';
 import axios from 'axios';
 import 'leaflet/dist/leaflet.css';
 
@@ -46,8 +47,8 @@ function App() {
   return (
     <div style={{ height: '100vh', width: '100vw', position: 'relative', fontFamily: 'sans-serif' }}>
       <MapContainer 
-        center={[35.7796, -78.6382]} 
-        zoom={13} 
+        center={[35.815159, -78.626145]}
+        zoom={16}
         style={{ height: '100%', width: '100%' }}
       >
         <TileLayer
@@ -60,8 +61,11 @@ function App() {
           <GeoJSON 
             key={layerName} 
             data={geoData} 
+            pointToLayer={(_, latlng) => L.circleMarker(latlng, {
+              radius: 5, color: '#0052cc', fillColor: '#0052cc', fillOpacity: 0.9
+            })}
             style={{
-              color: layerName === 'bus_routes' ? '#0052cc' : '#d32f2f',
+              color: layerName === 'bus_stops' ? '#0052cc' : '#d32f2f',
               weight: 2,
               opacity: 0.6
             }} 
@@ -90,11 +94,11 @@ function App() {
                     <div key={index} style={{ 
                       marginBottom: '6px', 
                       padding: '4px', 
-                      background: finding.layer === 'bus_routes' ? '#eef4ff' : '#fff0f0',
-                      border: `1px solid ${finding.layer === 'bus_routes' ? '#0052cc' : '#d32f2f'}`,
+                      background: '#fff0f0',
+                      border: '1px solid #d32f2f',
                       borderRadius: '3px'
                     }}>
-                      <span style={{ fontWeight: 'bold' }}>{finding.layer.replace('_', ' ')}:</span> {finding.count} feature(s)
+                      <span style={{ fontWeight: 'bold' }}>Stop {finding.stop_id} in mapped {finding.flood_zone} area {finding.flood_area_id}</span>
                     </div>
                   ))}
                 </div>
@@ -103,6 +107,14 @@ function App() {
               <div style={{ marginTop: '12px', fontSize: '11px', color: '#888' }}>
                 Source records IDs: {locationData.source_records.map(r => r.id).join(', ')}
               </div>
+              <div style={{ marginTop: '8px', fontSize: '11px' }}>
+                {locationData.source_records.map((r, i) => (
+                  <div key={`${r.layer}-${r.id}-${i}`}>
+                    <a href={r.source_url} target="_blank" rel="noreferrer">{r.layer}: {r.id}</a>
+                  </div>
+                ))}
+              </div>
+              <p style={{ fontSize: '11px', color: '#666' }}>{locationData.limitations}</p>
             </div>
           </Popup>
         )}
